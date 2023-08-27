@@ -42,19 +42,30 @@ def save_to_file(person: Person):
 
 
 def main():
+    from time import sleep
     print("Ввод одной строкой через пробел\n"
           "Фамилия Имя Отчество, дата рождения, номер телефона, пол(м/ж)\n"
           "Пример: Иванов Иван Иванович 01.01.1990 79001234567 м\n"
-          "Введите данные пользователя: ")
-    data = input(">>> ")
-    try:
-        person = parse_data(data)
-        save_to_file(person)
-        print("Данные успешно сохранены в файл.")
-    except InvalidDataError as e:
-        print(f"Ошибка валидации данных: {e}")
-    except Exception as e:
-        print(f"Произошла ошибка: {e}")
+          "Для завершения программы нажмите enter в пустой строке")
+    while True:
+        print("Введите данные пользователя: ")
+        data = input(">>> ")
+        if data == "":
+            print("this device will self-destruct in")
+            for i in range(10, 0, -1):
+                sleep(1)
+                print(i)
+            sleep(2)
+            print("\\\\!!KABOOM!!!//")
+            break
+        try:
+            person = parse_data(data)
+            save_to_file(person)
+            print("Данные успешно сохранены в файл.")
+        except InvalidDataError as e:
+            print(f"Ошибка валидации данных: {e}")
+        except Exception as e:
+            print(f"Произошла ошибка: {e}")
 
 
 if __name__ == "__main__":
